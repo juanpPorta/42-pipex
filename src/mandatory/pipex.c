@@ -6,11 +6,11 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 00:59:42 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/13 16:39:24 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/13 19:48:30 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 void	luck(char **argv, char **envp, int *fd)
 {
@@ -24,27 +24,29 @@ void	luck(char **argv, char **envp, int *fd)
 		printf("error\n");
 	dup2(filein, 0);
 	execute(argv[2], envp);
+	close(filein);
 }
-
 
 void	vader(char **argv, char **envp, int *fd)
 {
 	int		fileout;
 
-	fileout = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0777);
-	if (fileout == -1)
-		printf("error\n");
 	close(fd[1]);
 	dup2(fd[0], 0);
 	close(fd[0]);
+	fileout = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	if (fileout == -1)
+		printf("error\n");
 	dup2(fileout, 1);
 	execute(argv[3], envp);
+	close(fileout);
 }
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-    int fd[2];
+	int	fd[2];
 	int	pid;
+
 	if (argc == 5)
 	{
 		if (pipe(fd) == -1)
@@ -58,10 +60,6 @@ int main(int argc, char **argv, char **envp)
 		vader(argv, envp, fd);
 	}
 	else
-	{
-		printf("quiere a cristo rey!!\n");	
-		printf("quiere a cristo rey!!\n");	
-		printf("quiere a cristo rey!!\n");	
-	}
+		printf("u try to fuck me\n");
 	return (0);
 }

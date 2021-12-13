@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   pipex._bonus_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 17:34:07 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/10 18:37:52 by jporta           ###   ########.fr       */
+/*   Created: 2021/12/13 18:16:44 by jporta            #+#    #+#             */
+/*   Updated: 2021/12/13 19:58:08 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./pipex.h"
+#include "../pipex.h"
 
 char	*path(char *cmd, char **envp)
 {
@@ -36,7 +36,7 @@ char	*path(char *cmd, char **envp)
 	return (0);
 }
 
-void execute(char *argv, char **envp)
+void	execute(char *argv, char **envp)
 {
 	char	**cmd;
 

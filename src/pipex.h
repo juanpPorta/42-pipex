@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 04:05:59 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/10 18:08:14 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/13 21:18:20 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,15 @@
 # include <stdio.h>
 # include <sys/wait.h>
 # include <fcntl.h>
-# include "./libft/libft.h"
+# include "../libft/libft.h"
+
+typedef struct s_push
+{
+	int	sons;
+	int	count;
+	int	arc;
+	int	comand;
+}		t_push;
 
 void	execute(char *argv, char **envp);
 char	*path(char *cmd, char **envp);
