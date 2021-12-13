@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 00:59:42 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/10 18:44:15 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/13 16:39:24 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ void	luck(char **argv, char **envp, int *fd)
 {
 	int		filein;
 
+	close(fd[0]);
+	dup2(fd[1], 1);
+	close(fd[1]);
 	filein = open(argv[1], O_RDONLY, 0777);
 	if (filein == -1)
 		printf("error\n");
-	dup2(fd[1], STDOUT_FILENO);
-	dup2(filein, STDIN_FILENO);
-	close(fd[0]);
+	dup2(filein, 0);
 	execute(argv[2], envp);
 }
 
@@ -30,12 +31,13 @@ void	vader(char **argv, char **envp, int *fd)
 {
 	int		fileout;
 
-	fileout = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	fileout = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	if (fileout == -1)
 		printf("error\n");
-	dup2(fd[0], STDOUT_FILENO);
+	close(fd[1]);
+	dup2(fd[0], 0);
 	close(fd[0]);
-	dup2(fileout, STDIN_FILENO);
+	dup2(fileout, 1);
 	execute(argv[3], envp);
 }
 
@@ -54,8 +56,6 @@ int main(int argc, char **argv, char **envp)
 			luck(argv, envp, fd);
 		waitpid(pid, NULL, 0);
 		vader(argv, envp, fd);
-		close(fd[0]);
-		close(fd[1]);
 	}
 	else
 	{
