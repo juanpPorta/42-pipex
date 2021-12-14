@@ -1,4 +1,4 @@
-CC		= gcc -g
+CC		= gcc -g3 -fsanitize=address
 NAME	= pipex
 LIB	= ./libft/libft.a
 HEADER	= ./src

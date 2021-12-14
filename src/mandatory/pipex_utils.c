@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 17:34:07 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/13 20:14:17 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/14 21:17:14 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ char	*path(char *cmd, char **envp)
 	return (0);
 }
 
-void	execute(char *argv, char **envp)
+int	execute(char *argv, char **envp)
 {
 	char	**cmd;
 
 	cmd = ft_split(argv, ' ');
 	if (execve(path(cmd[0], envp), cmd, envp) == -1)
-		printf("u dumb\n");
+		ft_errorpipex(0);
 }

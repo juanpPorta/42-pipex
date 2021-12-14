@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:06:16 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/13 21:40:36 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/14 18:52:31 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,18 @@ int	main(int argc, char **argv, char **envp)
 	{
 		push->count = 0;
 		push->sons = argc - 5;
-		while ()
+		while (push->sons-- != 0)
+		{
 			if (pipe(fd) == -1)
 				printf("mal\n");
 			pid = fork();
 			if (pid < 0)
 				printf("mal\n");
-		if (pid == 0)
-		{
-			printf("sons: %d\n", push->sons);
-			luck(argv, envp, fd, push);
+			if (pid == 0)
+			{
+				printf("sons: %d\n", push->sons);
+				luck(argv, envp, fd, push);
+			}	
 		}
 		waitpid(pid, NULL, 0);
 		vader(argv, envp, fd, argc);
