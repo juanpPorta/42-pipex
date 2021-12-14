@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 17:34:07 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/14 21:17:14 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/14 22:42:31 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*path(char *cmd, char **envp)
 	return (0);
 }
 
-int	execute(char *argv, char **envp)
+void	execute(char *argv, char **envp)
 {
 	char	**cmd;
 
