@@ -1,4 +1,4 @@
-CC		= gcc -g
+CC		= gcc -Wall -Wextra -Werror
 NAME	= pipex
 LIB	= ./libft/libft.a
 HEADER	= ./src

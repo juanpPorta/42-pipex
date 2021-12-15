@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 00:59:42 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/14 21:16:31 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/15 03:20:31 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_errorpipex(int index)
 {
 	if (index == 0)
 	{
-		printf("u try to fuck me\n");
+		ft_putstr_fd("u try to fuck me\n", 2);
 		exit(EXIT_SUCCESS);
 	}
 }
@@ -59,7 +59,6 @@ int	main(int argc, char **argv, char **envp)
 		if (pipe(fd) == -1)
 			ft_errorpipex(0);
 		pid = fork();
-		printf("pid: %d\n", pid);
 		if (pid < 0)
 			ft_errorpipex(0);
 		if (pid == 0)
