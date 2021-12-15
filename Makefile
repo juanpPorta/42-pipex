@@ -34,3 +34,5 @@ fclean:		clean
 			rm -rf ./src/bonus/*.o
 
 re:			fclean all
+
+rebonus:	fclean bonus

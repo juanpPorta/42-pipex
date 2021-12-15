@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:06:16 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/15 03:17:20 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/15 04:22:39 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	luck(char *argv, char **envp)
 	}
 }
 
-void	here_doc(char *argv, int argc)
+void	heredox(char *argv, int argc)
 {
 	pid_t	pid;
 	int		fd[2];
@@ -76,7 +76,7 @@ void	here_doc(char *argv, int argc)
 
 int	main(int argc, char **argv, char **envp)
 {
-	int		i;
+	int		comand;
 	t_push	*push;
 
 	if (argc >= 5)
@@ -84,19 +84,19 @@ int	main(int argc, char **argv, char **envp)
 		push = malloc(sizeof(t_push));
 		if (ft_strncmp(argv[1], "here_doc", 8) == 0)
 		{
-			i = 3;
-			push->fileout = open_file(argv[argc - 1], 0);
-			here_doc(argv[2], argc);
+			comand = 3;
+			push->fileout = init_file(argv[argc - 1], 0);
+			heredox(argv[2], argc);
 		}
 		else
 		{
-			i = 2;
-			push->fileout = open_file(argv[argc - 1], 1);
-			push->filein = open_file(argv[1], 2);
+			comand = 2;
+			push->fileout = init_file(argv[argc - 1], 1);
+			push->filein = init_file(argv[1], 2);
 			dup2(push->filein, STDIN_FILENO);
 		}
-		while (i < argc - 2)
-			luck(argv[i++], envp);
+		while (comand < argc - 2)
+			luck(argv[comand++], envp);
 		dup2(push->fileout, STDOUT_FILENO);
 		execute(argv[argc - 2], envp);
 	}

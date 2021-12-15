@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 00:59:42 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/15 03:20:31 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/15 04:09:29 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	vader(char **argv, char **envp, int *fd)
 
 int	main(int argc, char **argv, char **envp)
 {
-	int	fd[2];
-	int	pid;
-	int	filein;
+	int		fd[2];
+	pid_t	pid;
+	int		filein;
 
 	if (argc == 5)
 	{

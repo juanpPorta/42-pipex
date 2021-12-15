@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:16:44 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/15 03:08:27 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/15 04:02:14 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	get_next_line(char **line)
 	return (r);
 }
 
-int	open_file(char *argv, int i)
+int	init_file(char *argv, int i)
 {
 	int	file;
 
