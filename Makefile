@@ -4,10 +4,12 @@ LIB	= ./libft/libft.a
 HEADER	= ./src
 OBJS	= $(SRCS:.c=.o)
 OBJSB	= $(BONUS:.c=.o)
-SRCS	=  ./src/mandatory/pipex.c ./src/mandatory/pipex_utils.c
+SRCS	=  ./src/mandatory/pipex.c ./src/mandatory/pipex_utils.c \
+			./src/ft_error.c
 			
 
-BONUS	=  ./src/bonus/pipex_bonus_utils.c ./src/bonus/pipex_bonus.c
+BONUS	=  ./src/bonus/pipex_bonus_utils.c ./src/bonus/pipex_bonus.c \
+			./src/ft_error.c
 
 all:	$(NAME)
 

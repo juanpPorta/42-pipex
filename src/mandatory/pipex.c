@@ -6,20 +6,11 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 00:59:42 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/15 04:09:29 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/16 15:22:22 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
-
-void	ft_errorpipex(int index)
-{
-	if (index == 0)
-	{
-		ft_putstr_fd("u try to fuck me\n", 2);
-		exit(EXIT_SUCCESS);
-	}
-}
 
 int	luck(char **argv, char **envp, int *fd, int filein)
 {

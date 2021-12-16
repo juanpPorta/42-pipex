@@ -6,19 +6,16 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:06:16 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/15 04:22:39 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/16 16:35:44 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-void	ft_errorpipex(int index)
+void	ft_solution(char **argv, int argc, t_push *push)
 {
-	if (index == 0)
-	{
-		ft_putstr_fd("u try to fuck me\n", 2);
-		exit(EXIT_SUCCESS);
-	}
+	push->fileout = init_file(argv[argc - 1], 0);
+	push->delim = ft_strjoin(argv[2], "\n");
 }
 
 void	luck(char *argv, char **envp)
@@ -45,11 +42,10 @@ void	luck(char *argv, char **envp)
 	}
 }
 
-void	heredox(char *argv, int argc)
+void	heredox(t_push *push, int argc)
 {
 	pid_t	pid;
 	int		fd[2];
-	char	*line;
 
 	if (argc < 6)
 		ft_errorpipex(0);
@@ -59,11 +55,12 @@ void	heredox(char *argv, int argc)
 	if (pid == 0)
 	{
 		close(fd[0]);
-		while (get_next_line(&line))
+		while (get_next_line(&push->line))
 		{
-			if (ft_strncmp(line, argv, ft_strlen(argv)) == 0)
+			if (ft_strncmp(push->line, push->delim,
+					ft_strlen(push->delim)) == 0)
 				exit(EXIT_SUCCESS);
-			write(fd[1], line, ft_strlen(line));
+			write(fd[1], push->line, ft_strlen(push->line));
 		}
 	}
 	else
@@ -85,8 +82,8 @@ int	main(int argc, char **argv, char **envp)
 		if (ft_strncmp(argv[1], "here_doc", 8) == 0)
 		{
 			comand = 3;
-			push->fileout = init_file(argv[argc - 1], 0);
-			heredox(argv[2], argc);
+			ft_solution(argv, argc, push);
+			heredox(push, argc);
 		}
 		else
 		{

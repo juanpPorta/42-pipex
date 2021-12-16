@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 04:05:59 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/15 04:02:29 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/16 15:15:02 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@
 
 typedef struct s_push
 {
-	int	sons;
-	int	count;
-	int	arc;
-	int	comand;
-	int	filein;
-	int	fileout;
+	int		sons;
+	int		count;
+	int		arc;
+	int		comand;
+	int		filein;
+	int		fileout;
+	char	*line;
+	char	*delim;
 }		t_push;
 
 void	execute(char *argv, char **envp);
