@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:16:44 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/16 19:09:50 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/20 17:10:06 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ void	execute(char *argv, char **envp)
 	char	**cmd;
 
 	cmd = ft_split(argv, ' ');
-	if (cmd[0][0] == '/')
+	if (cmd[0][0] == '/' || cmd[0][0] == '.' || cmd[0][0] == '~'
+		|| access(cmd[0], X_OK) == 0)
 	{
 		if (execve(cmd[0], cmd, envp) == -1)
 			ft_errorpipex(0);

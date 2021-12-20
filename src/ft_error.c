@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 15:21:27 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/16 15:21:49 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/20 17:04:48 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	ft_errorpipex(int index)
 	if (index == 0)
 	{
 		ft_putstr_fd("u try to fuck me\n", 2);
-		exit(EXIT_SUCCESS);
+		exit(EXIT_FAILURE);
 	}
 }
