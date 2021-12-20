@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 04:05:59 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/16 15:15:02 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/20 18:39:49 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,13 @@ typedef struct s_push
 }		t_push;
 
 void	execute(char *argv, char **envp);
+void	execute_bonus(char *argv, char **envp, t_push *push);
 char	*path(char *cmd, char **envp);
-void	ft_errorpipex(int index);
-int		init_file(char *argv, int i);
+char	*path_bonus(char *cmd, char **envp, t_push *push);
+void	ft_errorpipex(int index, t_push *push);
+void	ft_errorpipe(int index);
+int		init_file(char *argv, int i, t_push *push);
 int		get_next_line(char **line);
+void	ft_waitpid(int status);
+void	ft_pid(pid_t pid);
 #endif

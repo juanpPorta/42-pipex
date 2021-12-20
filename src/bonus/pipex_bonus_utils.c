@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:16:44 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/20 17:10:06 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/20 18:39:11 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	get_next_line(char **line)
 	return (r);
 }
 
-int	init_file(char *argv, int i)
+int	init_file(char *argv, int i, t_push *push)
 {
 	int	file;
 
@@ -51,11 +51,11 @@ int	init_file(char *argv, int i)
 	else if (i == 2)
 		file = open(argv, O_RDONLY, 0777);
 	if (file == -1)
-		ft_errorpipex(0);
+		ft_errorpipex(0, push);
 	return (file);
 }
 
-char	*path(char *cmd, char **envp)
+char	*path_bonus(char *cmd, char **envp, t_push *push)
 {
 	char	**paths;
 	char	*path;
@@ -66,7 +66,7 @@ char	*path(char *cmd, char **envp)
 	while (envp[i] != NULL && ft_strnstr(envp[i], "PATH", 4) == 0)
 		i++;
 	if (envp[i] == NULL)
-		ft_errorpipex(0);
+		ft_errorpipex(0, push);
 	paths = ft_split(envp[i] + 5, ':');
 	i = 0;
 	while (paths[i])
@@ -75,23 +75,38 @@ char	*path(char *cmd, char **envp)
 		path = ft_strjoin(part_path, cmd);
 		free(part_path);
 		if (access(path, F_OK) == 0)
+		{
+			free(paths[i]);
 			return (path);
+		}
 		i++;
 	}
 	return (0);
 }
 
-void	execute(char *argv, char **envp)
+void	execute_bonus(char *argv, char **envp, t_push *push)
 {
 	char	**cmd;
+	int		i;
 
 	cmd = ft_split(argv, ' ');
+	i = -1;
 	if (cmd[0][0] == '/' || cmd[0][0] == '.' || cmd[0][0] == '~'
 		|| access(cmd[0], X_OK) == 0)
 	{
 		if (execve(cmd[0], cmd, envp) == -1)
-			ft_errorpipex(0);
+		{
+			while (cmd[++i])
+				free(cmd[i]);
+			free(cmd);
+			ft_errorpipex(0, push);
+		}
 	}
-	if (execve(path(cmd[0], envp), cmd, envp) == -1)
-		ft_errorpipex(0);
+	if (execve(path_bonus(cmd[0], envp, push), cmd, envp) == -1)
+	{
+		while (cmd[++i])
+			free(cmd[i]);
+		free(cmd);
+		ft_errorpipex(0, push);
+	}
 }

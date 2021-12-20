@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_waitpid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 15:21:27 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/20 18:37:01 by jporta           ###   ########.fr       */
+/*   Created: 2021/12/20 17:40:40 by jporta            #+#    #+#             */
+/*   Updated: 2021/12/20 18:28:53 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_errorpipex(int index, t_push *push)
+void	ft_waitpid(int status)
 {
-	if (index == 0)
-	{
-		ft_putstr_fd("u try to fuck me\n", 2);
-		free(push);
-		exit(EXIT_FAILURE);
-	}
-	if (index == 1)
-	{
-		ft_putstr_fd("u try to fuck me\n", 2);
-		exit(EXIT_FAILURE);
-	}
+	if (WEXITSTATUS(status) == EXIT_FAILURE)
+		exit(1);
 }
 
-void	ft_errorpipe(int index)
+void	ft_pid(int ped)
 {
-	if (index == 0)
-	{
-		ft_putstr_fd("u try to fuck me\n", 2);
-		exit(EXIT_FAILURE);
-	}
+	if (ped < 0)
+		ft_errorpipe(0);
 }
