@@ -6,7 +6,7 @@
 /*   By: jporta <jporta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:16:44 by jporta            #+#    #+#             */
-/*   Updated: 2021/12/20 18:39:11 by jporta           ###   ########.fr       */
+/*   Updated: 2021/12/21 16:04:48 by jporta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*path_bonus(char *cmd, char **envp, t_push *push)
 		part_path = ft_strjoin(paths[i], "/");
 		path = ft_strjoin(part_path, cmd);
 		free(part_path);
-		if (access(path, F_OK) == 0)
+		if (access(path, X_OK) == 0)
 		{
 			free(paths[i]);
 			return (path);
